@@ -8,11 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.widget.TextView;
+
 
 public class AnalysisFragment extends Fragment {
+    private TextView textView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.analysis_fragment, container, false);
+
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.analysis_fragment, container, false);
+
+        textView = rootView.findViewById(R.id.analysisCaffeine);
+        textView.setText("오늘의 카페인 분석 결과");
+        textView.setTextSize(24);
+
+        return rootView;
+
     }
 }
