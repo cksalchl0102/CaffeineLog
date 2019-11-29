@@ -21,8 +21,7 @@ public class AnalysisFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.analysis_fragment, container, false);
 
         textView = rootView.findViewById(R.id.analysisCaffeine);
-        textView.setText("오늘의 카페인 분석 결과");
-        textView.setTextSize(24);
+        textView.setText("database....");
 
         return rootView;
 
