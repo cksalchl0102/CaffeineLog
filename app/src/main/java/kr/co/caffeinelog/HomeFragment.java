@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import kr.co.caffeinelog.Common.FragmentDialog;
+import kr.co.caffeinelog.Common.Info;
 import kr.co.caffeinelog.Common.InfoEditDialog;
 
 import android.content.res.Resources;
@@ -27,6 +28,8 @@ public class HomeFragment extends Fragment {
     TextView percentView;
     ImageButton infoEditButton;
 
+    Info infoDatabase;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,14 +46,22 @@ public class HomeFragment extends Fragment {
         infoEditButton.setOnClickListener(onClickListener);
 
 
+        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        infoDatabase = ((Main2Activity)getActivity()).infoDatabase;
+        ageView.setText(infoDatabase.age+"세");
+        genderView.setText(infoDatabase.gender+"");
+        weightView.setText(infoDatabase.weight+"kg");
 
         Resources res = getResources();
         Drawable progressdrawble = res.getDrawable(R.drawable.custom_progressbar_warning);
         progressBar.setProgressDrawable(progressdrawble);
         progressBar.setProgress(50);
-
-
-        return rootView;
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {

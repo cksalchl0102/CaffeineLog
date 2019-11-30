@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import kr.co.caffeinelog.R;
 
 public class InfoEditDialog extends DialogFragment {
+
+
     public static InfoEditDialog newInstance(){
         InfoEditDialog dialog = new InfoEditDialog();
         return dialog;
@@ -28,6 +31,10 @@ public class InfoEditDialog extends DialogFragment {
         final View layout = inflater.inflate(R.layout.info_edit_dialog, null);
         builder.setView(layout);
         builder.setTitle("정보 입력");
+
+        EditText newAge = (EditText)layout.findViewById(R.id.newAge);
+        EditText newWeight = (EditText)layout.findViewById(R.id.newWeight);
+
 
         builder.setPositiveButton("입력", new DialogInterface.OnClickListener() {
             @Override
