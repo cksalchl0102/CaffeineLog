@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private HomeFragment homeFragment;
-    private AnalysisFragment.AddViewFragment addViewFragment;
+    private AddViewFragment addViewFragment;
     private AnalysisFragment analysisFragment;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         homeFragment = new HomeFragment();
-        addViewFragment = new AnalysisFragment.AddViewFragment();
+        addViewFragment = new AddViewFragment();
         analysisFragment = new AnalysisFragment();
 
         transaction = fragmentManager.beginTransaction();

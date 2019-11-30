@@ -39,10 +39,10 @@ public class HomeFragment extends Fragment {
         genderView.setOnLongClickListener(onLongClickListener);
         weightView.setOnLongClickListener(onLongClickListener);
 
-        /*Resources res = getResources();
+        Resources res = getResources();
         Drawable progressdrawble = res.getDrawable(R.drawable.custom_progressbar_warning);
         progressBar.setProgressDrawable(progressdrawble);
-        progressBar.setProgress(50);*/
+        progressBar.setProgress(50);
 
 
         return rootView;
