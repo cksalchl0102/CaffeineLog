@@ -10,6 +10,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.*;
+import java.net.*;
 
 public class AnalysisTask extends AsyncTask<String, Void, String> {
     //mySQL DB에서 카페인 섭취 분석 결과 데이터 값과 연동하는 클래스입니다.
@@ -23,6 +25,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
         String jspUrl = "http://192.168.1.199:8080/CaffeineLogServer/AnalysisDataBase.jsp";
         //기숙사 : 192.168.1.199
         //집 192.168.219.100
+        //독서실 172.16.9.157
         HttpURLConnection conn = null;
 
         try {
@@ -36,7 +39,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 원하는 DB의 종류(type)과 조건(value)를 저장
-            sendMsg = "type=" + strings[0] + "value" + strings[1];
+            sendMsg = "type=" + strings[0] + "&scope=" + strings[1];
             Log.i("chanmi", sendMsg);
 
             osw.write(sendMsg);
@@ -53,6 +56,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
                     buffer.append(tmp);
                 }
                 recieveMsg = buffer.toString();
+                Log.i("chanmi","recieveMsg : "+recieveMsg);
             } else {
                 Log.i("chanmi", "통신 에러입니당");
             }
