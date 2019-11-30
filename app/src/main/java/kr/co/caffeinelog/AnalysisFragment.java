@@ -47,4 +47,12 @@ public class AnalysisFragment extends Fragment implements View.OnClickListener {
 
         }
     }
+
+    public static class AddViewFragment extends Fragment {
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.addview_fragment, container, false);
+        }
+    }
 }
