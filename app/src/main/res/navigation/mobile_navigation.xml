@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_addview"
-        android:name="kr.co.caffeinelog.AddViewFragment"
+        android:name="kr.co.caffeinelog.AnalysisFragment.AddViewFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/addview_fragment" />
 

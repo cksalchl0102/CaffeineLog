@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#FFFFFF"
         android:text="♥ 카페인 달력 ♥"
         android:textAlignment="center"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:background="#fffff0"/>
 
     <CalendarView
         android:layout_width="match_parent"
