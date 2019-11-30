@@ -7,13 +7,13 @@ public class Info {
 
     public Info(){
         age = 20;
-        gender = "male";
+        gender = "남자";
         weight = 60;
     }
 
     public Info(String str){
         age = 20;
-        gender = "male";
+        gender = "남자";
         weight = 60;
 
         String strs[] = str.split("####");

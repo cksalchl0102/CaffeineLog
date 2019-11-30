@@ -3,10 +3,7 @@ package kr.co.caffeinelog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import kr.co.caffeinelog.Common.FragmentDialog;
 import kr.co.caffeinelog.Common.Info;
-import kr.co.caffeinelog.Common.InfoEditDialog;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -28,11 +25,17 @@ public class HomeFragment extends Fragment {
     TextView percentView;
     ImageButton infoEditButton;
 
+    int age;
+    String gender;
+    int weight;
+    double recommended;
+
     Info infoDatabase;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.home_fragment, container, false);
 
         progressBar = (ProgressBar)rootView.findViewById(R.id.progressBar);
@@ -54,9 +57,21 @@ public class HomeFragment extends Fragment {
         super.onResume();
 
         infoDatabase = ((Main2Activity)getActivity()).infoDatabase;
-        ageView.setText(infoDatabase.age+"세");
-        genderView.setText(infoDatabase.gender+"");
-        weightView.setText(infoDatabase.weight+"kg");
+
+        age = infoDatabase.age;
+        gender = infoDatabase.gender;
+        weight = infoDatabase.weight;
+
+        if(age>=20){
+            recommended = 400;
+        }else{
+            recommended = weight*2.5;
+        }
+
+        ageView.setText(age+"세");
+        genderView.setText(gender+"");
+        weightView.setText(weight+"kg");
+        recommendedView.setText(recommended+"mg");
 
         Resources res = getResources();
         Drawable progressdrawble = res.getDrawable(R.drawable.custom_progressbar_warning);
@@ -70,6 +85,28 @@ public class HomeFragment extends Fragment {
 
             InfoEditDialog dialog = InfoEditDialog.newInstance();
             dialog.show(getFragmentManager(), "info_edit_dialog");
+
+            dialog.setDialogResult(new InfoEditDialog.OnMyDialogResult() {
+                @Override
+                public void finish(Info result) {
+                    infoDatabase = result;
+
+                    age = infoDatabase.age;
+                    gender = infoDatabase.gender;
+                    weight = infoDatabase.weight;
+
+                    if(age>=20){
+                        recommended = 400;
+                    }else{
+                        recommended = weight*2.5;
+                    }
+
+                    ageView.setText(age+"세");
+                    genderView.setText(gender+"");
+                    weightView.setText(weight+"kg");
+                    recommendedView.setText(recommended+"mg");
+                }
+            });
 
         }
     };

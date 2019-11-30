@@ -91,7 +91,7 @@
 
                     <TextView
                         android:id="@+id/ageView"
-                        android:layout_width="64dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22세"
                         android:textColor="@android:color/black"
@@ -190,7 +190,7 @@
 
                     <TextView
                         android:id="@+id/recommendedView"
-                        android:layout_width="65dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="600mg"
                         android:textColor="@android:color/black"
@@ -213,7 +213,7 @@
 
                     <TextView
                         android:id="@+id/intakeView"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="300mg"
                         android:textColor="@android:color/black"
@@ -236,7 +236,7 @@
 
                     <TextView
                         android:id="@+id/percentView"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50%"
                         android:textColor="@android:color/black"

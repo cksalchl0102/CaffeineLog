@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class FilebaseBroker extends DatabaseBroker {
 
-    String defaultInfo = "age:20####gender:male####weight:60";
+    String defaultInfo = "age:20####gender:남자####weight:60";
 
     //info============================================================================
     public void setInfoOnDataBrokerListener(Context context, OnDataBrokerListener onDataBrokerListener){

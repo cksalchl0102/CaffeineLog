@@ -2,6 +2,9 @@ package kr.co.caffeinelog;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -30,10 +33,6 @@ public class Main2Activity extends AppCompatActivity {
         context = this;
         rootPath = "CaffeineLog";
 
-        databaseBroker = DatabaseBroker.createDatabaseObject(rootPath); //createDatabase()
-        databaseBroker.setInfoOnDataBrokerListener(context, onInfoListener); //set Database for Settings
-        infoDatabase = databaseBroker.loadInfoDatabase(context);
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -43,12 +42,26 @@ public class Main2Activity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        databaseBroker = DatabaseBroker.createDatabaseObject(rootPath); //createDatabase()
+        databaseBroker.setInfoOnDataBrokerListener(context, onInfoListener); //set Database for Settings
+        infoDatabase = databaseBroker.loadInfoDatabase(context);
     }
 
     DatabaseBroker.OnDataBrokerListener onInfoListener = new DatabaseBroker.OnDataBrokerListener() {
         @Override
         public void onChange(String databaseStr) {
             infoDatabase = databaseBroker.loadInfoDatabase(context);
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.home_fragment, null);
+
+            TextView ageView = (TextView)layout.findViewById(R.id.ageView);
+            TextView genderView = (TextView)layout.findViewById(R.id.genderView);
+            TextView weightView = (TextView)layout.findViewById(R.id.weightView);
+
+            ageView.setText(infoDatabase.age+"세");
+            genderView.setText(infoDatabase.gender+"");
+            weightView.setText(infoDatabase.weight+"kg");
         }
     };
 
