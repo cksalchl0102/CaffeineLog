@@ -3,7 +3,8 @@
 
     <item android:id="@android:id/progress">
         <clip android:drawable="@drawable/person"
-            android:clipOrientation="vertical"></clip>
+            android:clipOrientation="vertical"
+            android:gravity="bottom"></clip>
     </item>
 
 </layer-list>
