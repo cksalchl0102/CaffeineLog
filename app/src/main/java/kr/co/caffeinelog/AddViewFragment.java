@@ -1,6 +1,8 @@
 package kr.co.caffeinelog;
 
 import kr.co.caffeinelog.Common.ExpandableListAdapter;
+import kr.co.caffeinelog.Common.addViewDialogFragment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -9,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,11 +26,17 @@ public class AddViewFragment extends Fragment {
     private ExpandableListView elv;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
-
+    private FloatingActionButton fabBtn;
+    private TextView caffeineAmountView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.addview_fragment, null);
+
+        fabBtn = (FloatingActionButton)rootView.findViewById(R.id.fab);
+        fabBtn.setOnClickListener(new FABClickListener());
+        caffeineAmountView = (TextView) rootView.findViewById(R.id.caffeine);
+        caffeineAmountView.setText("0");
 
         elv = (ExpandableListView) rootView.findViewById(R.id.list);
         ChildListData();
@@ -161,6 +172,26 @@ public class AddViewFragment extends Fragment {
         listDataChild.put(listDataHeader.get(2), EnergyDrink);
         listDataChild.put(listDataHeader.get(3), Soda);
         listDataChild.put(listDataHeader.get(4), Chocolate);
+    }
+
+    //FloatingActionButton 클릭 이벤트 리스너
+    class FABClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener(){
+                @Override
+                public void onCaffeineInputComplete(String caffeine) {
+                    if(caffeine != null) {
+                        //name is Texted EditText
+                        int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
+                        int afterInput = beforeInput+Integer.parseInt(caffeine);
+                        caffeineAmountView.setText(""+(afterInput));
+
+                    }
+                }
+            });
+            dialog.show(getFragmentManager(), "addDialog");
+        }
     }
 }
 

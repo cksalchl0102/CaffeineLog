@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="8dp"
-    android:background="#CCA63D">
+    android:background="#FFBB00">
 
     <ImageView
         android:id="@+id/iv_image"
