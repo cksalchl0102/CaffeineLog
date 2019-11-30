@@ -3,6 +3,9 @@ package kr.co.caffeinelog;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import kr.co.caffeinelog.Common.FragmentDialog;
+import kr.co.caffeinelog.Common.InfoEditDialog;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ public class HomeFragment extends Fragment {
     TextView recommendedView;
     TextView intakeView;
     TextView percentView;
+    ImageButton infoEditButton;
 
     @Nullable
     @Override
@@ -34,10 +39,10 @@ public class HomeFragment extends Fragment {
         recommendedView = (TextView)rootView.findViewById(R.id.recommendedView);
         intakeView = (TextView)rootView.findViewById(R.id.intakeView);
         percentView = (TextView)rootView.findViewById(R.id.percentView);
+        infoEditButton = (ImageButton) rootView.findViewById(R.id.infoEditButton);
+        infoEditButton.setOnClickListener(onClickListener);
 
-        ageView.setOnLongClickListener(onLongClickListener);
-        genderView.setOnLongClickListener(onLongClickListener);
-        weightView.setOnLongClickListener(onLongClickListener);
+
 
         Resources res = getResources();
         Drawable progressdrawble = res.getDrawable(R.drawable.custom_progressbar_warning);
@@ -48,17 +53,13 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
+    View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
-        public boolean onLongClick(View view) {
-            if(view == ageView){
+        public void onClick(View view) {
 
-            }else if(view == genderView){
+            InfoEditDialog dialog = InfoEditDialog.newInstance();
+            dialog.show(getFragmentManager(), "info_edit_dialog");
 
-            }else if(view == weightView){
-
-            }
-            return false;
         }
     };
 }
