@@ -2,7 +2,7 @@ package kr.co.caffeinelog.Model;
 
 public class AnalysisResult {
     private String result;
-    private String scope;
+    private int scope;
 
     public AnalysisResult() {
 
@@ -12,7 +12,7 @@ public class AnalysisResult {
         this.result = result;
     }
 
-    public void setScope(String scope) {
+    public void setScope(int scope) {
         this.scope = scope;
     }
 
@@ -20,7 +20,7 @@ public class AnalysisResult {
         return result;
     }
 
-    public String getScope() {
+    public int getScope() {
         return scope;
     }
 

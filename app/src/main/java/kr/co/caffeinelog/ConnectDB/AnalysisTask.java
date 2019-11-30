@@ -69,6 +69,6 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
             if (conn != null) conn.disconnect();
             Log.e("conn_disconnect", "disconnect");
         }
-        return null;
+        return recieveMsg;
     }
 }

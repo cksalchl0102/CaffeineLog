@@ -16,12 +16,14 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import kr.co.caffeinelog.ConnectDB.CaffeineScopeDAO;
+import kr.co.caffeinelog.Model.AnalysisResult;
 import kr.co.caffeinelog.R;
 
 public class FragmentDialog extends DialogFragment {
 
     private MyDialogListener myListener;
     private CaffeineScopeDAO caffeineScopeDAO = new CaffeineScopeDAO();
+
 
     public interface MyDialogListener {
         public void myCallback(String cityName);
@@ -55,7 +57,8 @@ public class FragmentDialog extends DialogFragment {
                         String cityName = edCityName.getText().toString();
                         Log.i("chanmi", cityName);
                         if(caffeineScopeDAO.checkCaffeine(cityName)){
-                            Log.i("chanmi","CaffeineDAO TRUE");
+                            Log.i("chanmi","CaffeineDialog : success ");
+
                         }else{
                             Log.i("chanmi","CaffeineDAO FAIL");
                         }
