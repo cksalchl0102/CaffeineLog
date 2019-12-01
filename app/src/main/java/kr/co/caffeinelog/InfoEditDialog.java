@@ -43,6 +43,7 @@ public class InfoEditDialog extends DialogFragment {
         final View layout = inflater.inflate(R.layout.info_edit_dialog, null);
         builder.setView(layout);
         builder.setTitle("정보 입력");
+        builder.setIcon(R.drawable.ic_create_black_24dp);
 
         databaseBroker = ((Main2Activity)getActivity()).databaseBroker;
         infoDatabase = ((Main2Activity)getActivity()).infoDatabase;

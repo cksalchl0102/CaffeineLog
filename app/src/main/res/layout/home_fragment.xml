@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="정보"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -72,7 +72,12 @@
                         android:layout_height="match_parent"
                         android:background="#DEB887"
                         app:srcCompat="@android:drawable/ic_menu_edit" />
+
                 </TableRow>
+
+                <View
+                    android:layout_height="2dp"
+                    android:background="@color/contents" />
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -86,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="나이 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -94,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22세"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
 
@@ -110,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="성별 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -118,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="여자"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
 
@@ -134,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="몸무게 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -142,10 +147,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00kg"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
             </TableLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:background="@color/contents" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -168,10 +180,14 @@
                         android:layout_span="2"
                         android:gravity="center"
                         android:text="카페인"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </TableRow>
+
+                <View
+                    android:layout_height="2dp"
+                    android:background="@color/contents" />
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -184,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="권장량 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -192,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="600mg"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
 
@@ -207,7 +223,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="섭취량 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -215,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="300mg"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
 
@@ -230,7 +246,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="퍼센트 :  "
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
 
                     <TextView
@@ -238,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50%"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
 
