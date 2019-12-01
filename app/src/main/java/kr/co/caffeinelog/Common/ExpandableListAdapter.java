@@ -17,6 +17,7 @@ import java.util.List;
 import kr.co.caffeinelog.R;
 
 
+
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
@@ -106,7 +107,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         //group 뷰 펼칠 때 또는 닫힐 때 왼쪽 아이콘 변경
         if(isExpanded){
-            viewHolder.iv_image.setBackgroundColor(Color.YELLOW);
+            viewHolder.iv_image.setBackgroundColor(Color.GRAY);
         }else{
             viewHolder.iv_image.setBackgroundColor(Color.WHITE);
         }

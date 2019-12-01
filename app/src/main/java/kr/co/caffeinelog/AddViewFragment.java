@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -100,8 +102,7 @@ public class AddViewFragment extends Fragment {
                                 childPosition), Toast.LENGTH_SHORT)
                         .show();
                  */
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = getActivity().getLayoutInflater();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("카페인 추가")
                         .setMessage(listDataChild.get(
                                 listDataHeader.get(groupPosition)).get(
@@ -118,8 +119,7 @@ public class AddViewFragment extends Fragment {
                                         caffeineAmountView.setText(""+(afterInput));
                                     }
                                 }).setNegativeButton("취소", null);
-                builder.create();
-                builder.show();
+                builder.create().show();
                 return false;
             }
         });
@@ -207,13 +207,9 @@ public class AddViewFragment extends Fragment {
             addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener(){
                 @Override
                 public void onCaffeineInputComplete(String caffeine) {
-                    if(caffeine != null) {
-                        //name is Texted EditText
-                        int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
-                        int afterInput = beforeInput+Integer.parseInt(caffeine);
-                        caffeineAmountView.setText(""+(afterInput));
-
-                    }
+                    int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
+                    int afterInput = beforeInput + Integer.parseInt(caffeine);
+                    caffeineAmountView.setText("" + (afterInput));
                 }
             });
             dialog.show(getFragmentManager(), "addDialog");

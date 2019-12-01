@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -34,6 +35,7 @@ public class addViewDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.addviewdialog, null);
         mCaffeine = (EditText)view.findViewById(R.id.id_txt_input);
+
         builder.setView(view)
                 .setTitle("직접 추가")
                 .setMessage("카페인 함량을 입력하세요.")
@@ -41,10 +43,13 @@ public class addViewDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener()
                         {
                             @Override
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                listener.onCaffeineInputComplete(mCaffeine
-                                        .getText().toString());
+                            public void onClick(DialogInterface dialog, int id) {
+                                //사용자가 아무것도 입력하지않은 경우 예외처리
+                                try {
+                                    listener.onCaffeineInputComplete(mCaffeine.getText().toString());
+                                }catch (NumberFormatException ex){
+                                    return;
+                                }
                             }
                         }).setNegativeButton("취소", null);
         return builder.create();
