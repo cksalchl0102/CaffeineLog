@@ -4,15 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="#FFFFBB33"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:text="직접 추가"
-        />
 
     <EditText
         android:id="@+id/id_txt_input"
@@ -24,7 +15,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif"
         android:inputType="number"
-        android:hint="카페인 함량 입력"
+        android:hint="여기에 입력"
         />
 
 </LinearLayout>

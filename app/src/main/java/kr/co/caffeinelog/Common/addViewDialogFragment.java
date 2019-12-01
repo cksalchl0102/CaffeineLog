@@ -35,6 +35,8 @@ public class addViewDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.addviewdialog, null);
         mCaffeine = (EditText)view.findViewById(R.id.id_txt_input);
         builder.setView(view)
+                .setTitle("직접 추가")
+                .setMessage("카페인 함량을 입력하세요.")
                 .setPositiveButton("확인",
                         new DialogInterface.OnClickListener()
                         {

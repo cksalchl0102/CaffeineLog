@@ -6,10 +6,14 @@ import kr.co.caffeinelog.Common.addViewDialogFragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,7 +90,8 @@ public class AddViewFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 //db에서 가져온 카페인함량 caffeineAmountView에 더하는 코드 추가해야함
-                Toast.makeText(
+
+                /*Toast.makeText(
                         getActivity(),
                         listDataHeader.get(groupPosition)
                                 + " : "
@@ -94,6 +99,27 @@ public class AddViewFragment extends Fragment {
                                 listDataHeader.get(groupPosition)).get(
                                 childPosition), Toast.LENGTH_SHORT)
                         .show();
+                 */
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                builder.setTitle("카페인 추가")
+                        .setMessage(listDataChild.get(
+                                listDataHeader.get(groupPosition)).get(
+                                childPosition)+"를 추가하시겠습니까?")
+                        .setPositiveButton("확인",
+                                new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id)
+                                    {
+                                        int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
+                                        //db에서 가져온 카페인함량값을 더해야함.
+                                        int afterInput = beforeInput+10;
+                                        caffeineAmountView.setText(""+(afterInput));
+                                    }
+                                }).setNegativeButton("취소", null);
+                builder.create();
+                builder.show();
                 return false;
             }
         });
