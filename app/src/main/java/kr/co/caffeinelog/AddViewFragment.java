@@ -119,6 +119,7 @@ public class AddViewFragment extends Fragment {
                                         caffeineAmountView.setText(""+(afterInput));
                                     }
                                 }).setNegativeButton("취소", null);
+                builder.setCancelable(false);
                 builder.create().show();
                 return false;
             }
