@@ -20,15 +20,15 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="170.67dp"
-                android:layout_height="170.67dp"
+                android:layout_width="213.33dp"
+                android:layout_height="213.33dp"
                 android:src="@drawable/person_blank" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="170.67dp"
-                android:layout_height="170.67dp"
+                android:layout_width="213.33dp"
+                android:layout_height="213.33dp"
                 android:max="100"
                 android:progressDrawable="@drawable/custom_progressbar" />
         </RelativeLayout>
@@ -38,14 +38,14 @@
             android:layout_height="0dp"
             android:layout_weight="5"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="2"
+            android:background="@drawable/layout_border">
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-
                 android:gravity="center"
                 android:padding="10dp"
                 android:weightSum="4">
@@ -70,7 +70,7 @@
                         android:id="@+id/infoEditButton"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="#fffaf0"
+                        android:background="#DEB887"
                         app:srcCompat="@android:drawable/ic_menu_edit" />
                 </TableRow>
 
@@ -152,7 +152,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-
                 android:gravity="center"
                 android:padding="10dp">
 

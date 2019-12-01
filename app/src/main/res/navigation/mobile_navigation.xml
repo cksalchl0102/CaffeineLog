@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_addview"
         android:name="kr.co.caffeinelog.AddViewFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_add"
         tools:layout="@layout/addview_fragment" />
 
     <fragment
         android:id="@+id/navigation_analysis"
         android:name="kr.co.caffeinelog.AnalysisFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_log"
         tools:layout="@layout/analysis_fragment" />
 </navigation>

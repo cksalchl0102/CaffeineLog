@@ -1,6 +1,7 @@
 package kr.co.caffeinelog;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         context = this;
+
         rootPath = "CaffeineLog";
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -52,16 +54,6 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         public void onChange(String databaseStr) {
             infoDatabase = databaseBroker.loadInfoDatabase(context);
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.home_fragment, null);
-
-            TextView ageView = (TextView)layout.findViewById(R.id.ageView);
-            TextView genderView = (TextView)layout.findViewById(R.id.genderView);
-            TextView weightView = (TextView)layout.findViewById(R.id.weightView);
-
-            ageView.setText(infoDatabase.age+"세");
-            genderView.setText(infoDatabase.gender+"");
-            weightView.setText(infoDatabase.weight+"kg");
         }
     };
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,15 +35,26 @@ public class AddViewFragment extends Fragment {
     private HashMap<String, List<String>> listDataChild;
     private FloatingActionButton fabBtn;
     private TextView caffeineAmountView;
+    private int totalCaffeine;
+
+    SharedPreferences caffeinePrefs;
+    SharedPreferences.Editor editor;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.addview_fragment, null);
 
+        caffeinePrefs = this.getActivity().getSharedPreferences("daily_caffeine",0);
+        editor = caffeinePrefs.edit();
+
+        totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
+
         fabBtn = (FloatingActionButton)rootView.findViewById(R.id.fab);
         fabBtn.setOnClickListener(new FABClickListener());
         caffeineAmountView = (TextView) rootView.findViewById(R.id.caffeine);
-        caffeineAmountView.setText("0");
+        //caffeineAmountView.setText("0");
+        caffeineAmountView.setText(totalCaffeine+"");
 
         elv = (ExpandableListView) rootView.findViewById(R.id.list);
         ChildListData();
@@ -113,10 +125,17 @@ public class AddViewFragment extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id)
                                     {
+                                        /*
                                         int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
                                         //db에서 가져온 카페인함량값을 더해야함.
                                         int afterInput = beforeInput+10;
                                         caffeineAmountView.setText(""+(afterInput));
+                                         */
+
+                                        totalCaffeine += 10;
+                                        editor.putInt("intake_caffeine", totalCaffeine);
+                                        editor.apply();
+                                        caffeineAmountView.setText(totalCaffeine+"");
                                     }
                                 }).setNegativeButton("취소", null);
                 builder.setCancelable(false);
@@ -208,9 +227,16 @@ public class AddViewFragment extends Fragment {
             addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener(){
                 @Override
                 public void onCaffeineInputComplete(String caffeine) {
+                    /*
                     int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
                     int afterInput = beforeInput + Integer.parseInt(caffeine);
                     caffeineAmountView.setText("" + (afterInput));
+                     */
+
+                    totalCaffeine += Integer.parseInt(caffeine);
+                    editor.putInt("intake_caffeine", totalCaffeine);
+                    editor.apply();
+                    caffeineAmountView.setText(totalCaffeine+"");
                 }
             });
             dialog.show(getFragmentManager(), "addDialog");

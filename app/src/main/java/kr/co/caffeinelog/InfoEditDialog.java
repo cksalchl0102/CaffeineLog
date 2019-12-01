@@ -26,9 +26,9 @@ public class InfoEditDialog extends DialogFragment {
     DatabaseBroker databaseBroker;
     Info infoDatabase;
 
-    int age;
-    String gender;
-    int weight;
+    private int age;
+    private String gender;
+    private int weight;
 
     public static InfoEditDialog newInstance(){
         InfoEditDialog dialog = new InfoEditDialog();
@@ -93,8 +93,6 @@ public class InfoEditDialog extends DialogFragment {
         mDialogResult = dialogResult;
 
     }
-
-
 
     public interface OnMyDialogResult{
 

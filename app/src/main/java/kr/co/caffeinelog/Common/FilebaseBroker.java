@@ -38,11 +38,13 @@ public class FilebaseBroker extends DatabaseBroker {
         }
     }
 
+    //info 값 불러오기=====================================================
     public Info loadInfoDatabase(Context context){
         Info info = new Info(infoDatabaseStr);
         return info;
     }
 
+    //info 값 저장============================================================
     public void saveInfoDatabase(Context context, Info infoDatabase){
         infoDatabaseStr = infoDatabase.toString();
 
@@ -64,7 +66,7 @@ public class FilebaseBroker extends DatabaseBroker {
 
         checkOnDataBrokerListener = onDataBrokerListener;
         if (checkOnDataBrokerListener != null) {
-            checkOnDataBrokerListener.onChange("test");
+            checkOnDataBrokerListener.onChange("CaffeineLog");
         }
     }
 
