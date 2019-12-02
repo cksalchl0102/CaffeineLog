@@ -35,18 +35,6 @@ public class FragmentDialog extends DialogFragment {
         //caffeineScopeDAO = new CaffeineScopeDAO();
     }
 
-  /*  @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        try {
-            myListener = (MyDialogListener) getTargetFragment();
-
-        } catch (ClassCastException e) {
-            throw new ClassCastException();
-        }
-    }*/
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

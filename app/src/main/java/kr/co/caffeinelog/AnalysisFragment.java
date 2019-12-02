@@ -17,11 +17,10 @@ import android.widget.TextView;
 
 import kr.co.caffeinelog.Common.FragmentDialog;
 import kr.co.caffeinelog.Common.Info;
+import kr.co.caffeinelog.ConnectDB.CaffeineScopeDAO;
 
 
 public class AnalysisFragment extends Fragment implements View.OnClickListener {
-    private TextView textView;
-    private Button dBTestButton;
 
     SharedPreferences caffeinePrefs;
     SharedPreferences.Editor editor;
@@ -31,6 +30,12 @@ public class AnalysisFragment extends Fragment implements View.OnClickListener {
     private double recommended;
     private int age;
     private int weight;
+    private TextView scope;
+    private TextView title1, title2, title3;
+    private TextView result1, result2, result3;
+
+    //DB
+    private CaffeineScopeDAO caffeineScopeDAO = new CaffeineScopeDAO();
 
     @Nullable
     @Override
@@ -38,8 +43,12 @@ public class AnalysisFragment extends Fragment implements View.OnClickListener {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.analysis_fragment, container, false);
 
-       // textView = rootView.findViewById(R.id.analysisCaffeine);
-       // textView.setText("database....");
+        title1 = rootView.findViewById(R.id.title1);
+        title2 = rootView.findViewById(R.id.title2);
+        title3 = rootView.findViewById(R.id.title3);
+        result1 = rootView.findViewById(R.id.result1);
+        result2 = rootView.findViewById(R.id.result2);
+        result3 = rootView.findViewById(R.id.result3);
 
 
         return rootView;
@@ -65,6 +74,18 @@ public class AnalysisFragment extends Fragment implements View.OnClickListener {
         }
         percent = intakeCaffeine / recommended * 100;
         Log.i("chanmi","in anlysis Class : "+percent);
+        String results[] = caffeineScopeDAO.getResult(String.valueOf(percent));
+        if(results[0].equals("fail")){
+            Log.i("chanmi","in analysis Class : Data get Fail");
+        }else{
+            Log.i("chanmi","in analysis Class : data get Success");
+            title1.setText(results[1]);
+            result1.setText(results[2]);
+            title2.setText(results[3]);
+            result2.setText(results[4]);
+            title3.setText(results[5]);
+            result3.setText(results[6]);
+        }
     }
 
     @Override

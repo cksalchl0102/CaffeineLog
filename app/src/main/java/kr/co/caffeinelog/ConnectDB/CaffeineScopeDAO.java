@@ -2,6 +2,8 @@ package kr.co.caffeinelog.ConnectDB;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import kr.co.caffeinelog.Model.AddCaffeineBean;
@@ -11,7 +13,7 @@ public class CaffeineScopeDAO {
 
     String[] returns;
     private AnalysisResult analysisResult = new AnalysisResult();
-    private AddCaffeineBean addCaffeineBean = new AddCaffeineBean() ;
+    private AddCaffeineBean addCaffeineBean = new AddCaffeineBean();
 
     public boolean checkCaffeine(String scope) {
 
@@ -80,6 +82,35 @@ public class CaffeineScopeDAO {
             e.printStackTrace();
         }
         return "false";
+    }
+
+    public String[] getResult(String percent) {
+        String result = "";
+        try {
+            result = new AnalysisTask().execute("getResult", percent, "").get();
+            if (result == null) {
+                returns[0] = "fail";
+                return returns;
+            }
+            returns = result.split("\t");
+            if (returns[0].equals("successGeAnalysis")) {
+                for (int i = 0; i < returns.length; i++) {
+                    Log.i("chanmi", "result[" + i + "] : " + returns[i]);
+                }
+                return returns;
+            } else {
+                returns[0] = "fail";
+                return returns;
+            }
+
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        returns[0] = "fail";
+        return returns;
     }
 
     public void settingResult(int scope) {
