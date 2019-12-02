@@ -60,23 +60,19 @@ public class AddViewFragment extends Fragment {
         fabBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fabBtn.setOnClickListener(new FABClickListener());
         caffeineAmountView = (TextView) rootView.findViewById(R.id.caffeine);
-        //caffeineAmountView.setText("0");
         caffeineAmountView.setText(totalCaffeine + "");
 
         elv = (ExpandableListView) rootView.findViewById(R.id.list);
         ChildListData();
 
         listAdapter = new ExpandableListAdapter(this.getContext(), listDataHeader, listDataChild);
-
         elv.setAdapter(listAdapter);
+
         elv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
 
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                // Toast.makeText(getApplicationContext(),
-                // "Group Clicked " + listDataHeader.get(groupPosition),
-                // Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -113,15 +109,6 @@ public class AddViewFragment extends Fragment {
                                         final int groupPosition, final int childPosition, long id) {
                 //db에서 가져온 카페인함량 caffeineAmountView에 더하는 코드 추가해야함
 
-                /*Toast.makeText(
-                        getActivity(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
-                 */
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("카페인 추가")
                         .setMessage(listDataChild.get(
@@ -195,9 +182,6 @@ public class AddViewFragment extends Fragment {
         Coffee.add("카라멜 마끼아또 Tall");
         Coffee.add("카라멜 마끼아또 Grande");
         Coffee.add("카라멜 마끼아또 Venti");
-        Coffee.add("카라멜 마끼아또 Tall");
-        Coffee.add("카라멜 마끼아또 Grande");
-        Coffee.add("카라멜 마끼아또 Venti");
 
         List<String> Tea = new ArrayList<String>();
         Tea.add("녹차");
@@ -245,12 +229,6 @@ public class AddViewFragment extends Fragment {
             addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener() {
                 @Override
                 public void onCaffeineInputComplete(String caffeine) {
-                    /*
-                    int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
-                    int afterInput = beforeInput + Integer.parseInt(caffeine);
-                    caffeineAmountView.setText("" + (afterInput));
-                     */
-
                     totalCaffeine += Integer.parseInt(caffeine);
                     editor.putInt("intake_caffeine", totalCaffeine);
                     editor.apply();
