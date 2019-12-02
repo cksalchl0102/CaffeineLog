@@ -170,11 +170,11 @@ public class AddViewFragment extends Fragment {
         listDataChild = new HashMap<String, List<String>>();
 
         // 그룹 생성
-        listDataHeader.add("Coffee");
-        listDataHeader.add("Tea");
-        listDataHeader.add("EnergyDrink");
-        listDataHeader.add("Soda");
-        listDataHeader.add("Chocolate");
+        listDataHeader.add("coffee");
+        listDataHeader.add("tea");
+        listDataHeader.add("energyDrink");
+        listDataHeader.add("soda");
+        listDataHeader.add("chocolate");
 
         // 그룹 내 차일드 뷰 생성
         List<String> Coffee = new ArrayList<String>();
