@@ -22,8 +22,9 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
 
         //카페인 분석 결과를 갖고있는 DB와 연결
-        String jspUrl = "http://192.168.1.199:8080/CaffeineLogServer/AnalysisDataBase.jsp";
-        //기숙사 : 192.168.1.199
+        String jspUrl = "http://192.168.1.199:8080/ServerOfCaffeineLog/LogDB.jsp";
+        //기숙사 내꺼 : 192.168.1.199
+        //기숙사 방꺼 : 192.168.0.6
         //집 192.168.219.100
         //독서실 172.16.9.157
         HttpURLConnection conn = null;
@@ -39,7 +40,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 원하는 DB의 종류(type)과 조건(value)를 저장
-            sendMsg = "type=" + strings[0] + "&scope=" + strings[1];
+            sendMsg = "type=" + strings[0] + "&scope=" + strings[1] + "&name=" + strings[2];
             Log.i("chanmi", sendMsg);
 
             osw.write(sendMsg);
@@ -56,7 +57,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
                     buffer.append(tmp);
                 }
                 recieveMsg = buffer.toString();
-                Log.i("chanmi","recieveMsg : "+recieveMsg);
+                Log.i("chanmi", "recieveMsg : " + recieveMsg);
             } else {
                 Log.i("chanmi", "통신 에러입니당");
             }

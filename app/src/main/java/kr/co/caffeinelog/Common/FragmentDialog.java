@@ -18,12 +18,14 @@ import androidx.fragment.app.Fragment;
 import kr.co.caffeinelog.ConnectDB.CaffeineScopeDAO;
 import kr.co.caffeinelog.Model.AnalysisResult;
 import kr.co.caffeinelog.R;
+import kr.co.caffeinelog.Service.AnalysisResultService;
 
 public class FragmentDialog extends DialogFragment {
 
     private MyDialogListener myListener;
     private CaffeineScopeDAO caffeineScopeDAO = new CaffeineScopeDAO();
-
+    private AnalysisResultService analysisResultService = new AnalysisResultService();
+    private Fragment fragment;
 
     public interface MyDialogListener {
         public void myCallback(String cityName);

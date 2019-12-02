@@ -2,6 +2,8 @@ package kr.co.caffeinelog;
 
 import kr.co.caffeinelog.Common.ExpandableListAdapter;
 import kr.co.caffeinelog.Common.addViewDialogFragment;
+import kr.co.caffeinelog.ConnectDB.CaffeineScopeDAO;
+import kr.co.caffeinelog.Model.AddCaffeineBean;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +39,11 @@ public class AddViewFragment extends Fragment {
     private FloatingActionButton fabBtn;
     private TextView caffeineAmountView;
     private int totalCaffeine;
+    //DB연동 코드 추가
+    private String caffeineSort = "";
+    private String caffeineName = "";
+    private CaffeineScopeDAO caffeineScopeDAO = new CaffeineScopeDAO();
+    public AddCaffeineBean addCaffeineBean = new AddCaffeineBean();
 
     SharedPreferences caffeinePrefs;
     SharedPreferences.Editor editor;
@@ -45,16 +53,16 @@ public class AddViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.addview_fragment, null);
 
-        caffeinePrefs = this.getActivity().getSharedPreferences("daily_caffeine",0);
+        caffeinePrefs = this.getActivity().getSharedPreferences("daily_caffeine", 0);
         editor = caffeinePrefs.edit();
 
         totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
 
-        fabBtn = (FloatingActionButton)rootView.findViewById(R.id.fab);
+        fabBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fabBtn.setOnClickListener(new FABClickListener());
         caffeineAmountView = (TextView) rootView.findViewById(R.id.caffeine);
         //caffeineAmountView.setText("0");
-        caffeineAmountView.setText(totalCaffeine+"");
+        caffeineAmountView.setText(totalCaffeine + "");
 
         elv = (ExpandableListView) rootView.findViewById(R.id.list);
         ChildListData();
@@ -82,6 +90,7 @@ public class AddViewFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         listDataHeader.get(groupPosition) + " 선택",
                         Toast.LENGTH_SHORT).show();
+                caffeineSort = listDataHeader.get(groupPosition);
             }
         });
 
@@ -102,7 +111,7 @@ public class AddViewFragment extends Fragment {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
+                                        final int groupPosition, final int childPosition, long id) {
                 //db에서 가져온 카페인함량 caffeineAmountView에 더하는 코드 추가해야함
 
                 /*Toast.makeText(
@@ -118,13 +127,11 @@ public class AddViewFragment extends Fragment {
                 builder.setTitle("카페인 추가")
                         .setMessage(listDataChild.get(
                                 listDataHeader.get(groupPosition)).get(
-                                childPosition)+"를 추가하시겠습니까?")
+                                childPosition) + "를 추가하시겠습니까?")
                         .setPositiveButton("확인",
-                                new DialogInterface.OnClickListener()
-                                {
+                                new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int id)
-                                    {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         /*
                                         int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
                                         //db에서 가져온 카페인함량값을 더해야함.
@@ -132,10 +139,22 @@ public class AddViewFragment extends Fragment {
                                         caffeineAmountView.setText(""+(afterInput));
                                          */
 
-                                        totalCaffeine += 10;
+                                        //디비 연동 시작
+                                        caffeineName = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+                                        int value = 0;
+                                        Log.i("chanmi", "in daaClass : 카페인 디비 보낼 값 테이블이름 : " + caffeineSort + ", 값 : " + caffeineName);
+                                        if (caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName).equals("false")) {
+                                            Log.i("chanmi", "in add Class : DB 연동 실패");
+                                           // value = Integer.parseInt(addCaffeineBean.getValue());
+                                        } else  {
+                                            value = Integer.parseInt(caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName));
+                                            Log.i("chanmi", "in add Class : DB 성공");
+
+                                        }
+                                        totalCaffeine += value;
                                         editor.putInt("intake_caffeine", totalCaffeine);
                                         editor.apply();
-                                        caffeineAmountView.setText(totalCaffeine+"");
+                                        caffeineAmountView.setText(totalCaffeine + "");
                                     }
                                 }).setNegativeButton("취소", null);
                 builder.setCancelable(false);
@@ -221,10 +240,10 @@ public class AddViewFragment extends Fragment {
     }
 
     //FloatingActionButton 클릭 이벤트 리스너
-    class FABClickListener implements View.OnClickListener{
+    class FABClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener(){
+            addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener() {
                 @Override
                 public void onCaffeineInputComplete(String caffeine) {
                     /*
@@ -236,7 +255,7 @@ public class AddViewFragment extends Fragment {
                     totalCaffeine += Integer.parseInt(caffeine);
                     editor.putInt("intake_caffeine", totalCaffeine);
                     editor.apply();
-                    caffeineAmountView.setText(totalCaffeine+"");
+                    caffeineAmountView.setText(totalCaffeine + "");
                 }
             });
             dialog.show(getFragmentManager(), "addDialog");
