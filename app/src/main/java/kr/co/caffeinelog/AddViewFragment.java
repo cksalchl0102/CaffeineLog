@@ -227,7 +227,7 @@ public class AddViewFragment extends Fragment {
         Chocolate.add("토블론 스위스 밀크초콜렛");
         Chocolate.add("젠느");
         Chocolate.add("고디바 초콜렛");
-        Chocolate.add("72%드립카카오");
+        Chocolate.add("72%드림카카오");
         Chocolate.add("핫 초코");
 
         //데이터 적용
