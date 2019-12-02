@@ -1,6 +1,5 @@
 package kr.co.caffeinelog.Common;
 
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;

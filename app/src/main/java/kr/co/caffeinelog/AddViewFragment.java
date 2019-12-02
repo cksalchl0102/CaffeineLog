@@ -12,14 +12,11 @@ import androidx.fragment.app.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Bundle;
-import android.view.Window;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -143,7 +140,7 @@ public class AddViewFragment extends Fragment {
                                         caffeineAmountView.setText(totalCaffeine + "");
                                     }
                                 }).setNegativeButton("취소", null);
-                builder.setCancelable(false);
+                builder.setCancelable(false);//다이얼로그 바깥영역 터치 시 종료되지 않도록 함
                 builder.create().show();
                 return false;
             }
@@ -156,14 +153,14 @@ public class AddViewFragment extends Fragment {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
-        // 그룹 생성
+        // Group 생성
         listDataHeader.add("coffee");
         listDataHeader.add("tea");
         listDataHeader.add("energydrink");
         listDataHeader.add("soda");
         listDataHeader.add("chocolate");
 
-        // 그룹 내 차일드 뷰 생성
+        // Group 내 Child뷰 생성
         List<String> Coffee = new ArrayList<String>();
         Coffee.add("샷 추가");
         Coffee.add("에스프레소");
@@ -236,6 +233,7 @@ public class AddViewFragment extends Fragment {
                 }
             });
             dialog.show(getFragmentManager(), "addDialog");
+            dialog.setCancelable(false);//다이얼로그 바깥영역 터치 시 종료되지 않도록 함
         }
     }
 }

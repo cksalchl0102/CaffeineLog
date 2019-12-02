@@ -39,7 +39,6 @@ public class InfoEditDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         //다이얼로그 ui 설정-----------------------------------------
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View layout = inflater.inflate(R.layout.info_edit_dialog, null);
