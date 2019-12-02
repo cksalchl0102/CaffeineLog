@@ -1,16 +1,17 @@
 package kr.co.caffeinelog.Common;
 
-public class Info {
+public class Info { //사용자 정보 class
     public int age;
     public String gender;
     public int weight;
 
-    public Info(){
+    public Info(){ //info 값 초기화
         age = 20;
         gender = "남자";
         weight = 60;
     }
 
+    //내부 파일 저장 형식으로 되어있는 것을 파싱해서 변수에 넣어줌
     public Info(String str){
         age = 20;
         gender = "남자";
@@ -32,6 +33,7 @@ public class Info {
         }
     }
 
+    //내부 파일에 저장 형식에 맞추기
     public String toString(){
         String str = "";
         str += "age"+":"+age;

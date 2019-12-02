@@ -39,7 +39,8 @@ public class Main2Activity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_action_bar);
-        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFFFF0000));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFFffffff));
+
 
         context = this;
 

@@ -9,20 +9,40 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/titleName"
+            app:srcCompat="@drawable/actionbar_icon" />
 
         <TextView
             android:id="@+id/titleName"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="false"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:gravity="center"
             android:text="  Caffeine Log  "
-            android:textColor="@android:color/background_light"
+            android:textColor="@color/contents"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_alignParentBottom="true"
+            android:background="#B97A57" />
 
     </RelativeLayout>
 

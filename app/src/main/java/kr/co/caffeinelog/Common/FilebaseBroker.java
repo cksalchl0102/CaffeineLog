@@ -15,7 +15,7 @@ public class FilebaseBroker extends DatabaseBroker {
 
     String defaultInfo = "age:20####gender:남자####weight:60";
 
-    //info============================================================================
+    //info 초가화(셋팅)==========================================================================
     public void setInfoOnDataBrokerListener(Context context, OnDataBrokerListener onDataBrokerListener){
         infoOnDataBrokerListener = onDataBrokerListener;
 
@@ -46,8 +46,9 @@ public class FilebaseBroker extends DatabaseBroker {
 
     //info 값 저장============================================================
     public void saveInfoDatabase(Context context, Info infoDatabase){
-        infoDatabaseStr = infoDatabase.toString();
+        infoDatabaseStr = infoDatabase.toString(); //새로운 info 값
 
+        //새로운 info 값 내부파일에 저장하기
         try {
             String fileName = rootPath+".txt";
             FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
@@ -60,7 +61,6 @@ public class FilebaseBroker extends DatabaseBroker {
             infoOnDataBrokerListener.onChange(infoDatabaseStr);
         }
     }
-
 
     public void setCheckDatabaseRoot(DatabaseBroker.OnDataBrokerListener onDataBrokerListener){
 

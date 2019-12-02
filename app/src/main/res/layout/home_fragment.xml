@@ -98,7 +98,7 @@
                         android:id="@+id/ageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="22세"
+                        android:text="20세"
                         android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
@@ -207,7 +207,7 @@
                         android:id="@+id/recommendedView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="600mg"
+                        android:text="100mg"
                         android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
@@ -230,7 +230,7 @@
                         android:id="@+id/intakeView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="300mg"
+                        android:text="100mg"
                         android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>
@@ -253,7 +253,7 @@
                         android:id="@+id/percentView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50%"
+                        android:text="100%"
                         android:textColor="@color/contents"
                         android:textSize="18sp" />
                 </TableRow>

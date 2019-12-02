@@ -39,18 +39,22 @@ public class InfoEditDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        //다이얼로그 ui 설정-----------------------------------------
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View layout = inflater.inflate(R.layout.info_edit_dialog, null);
         builder.setView(layout);
         builder.setTitle("정보 입력");
         builder.setIcon(R.drawable.ic_create_black_24dp);
 
+        //기존 info 값 받아오기-----------------------------------------
         databaseBroker = ((Main2Activity)getActivity()).databaseBroker;
         infoDatabase = ((Main2Activity)getActivity()).infoDatabase;
         age = infoDatabase.age;
         gender = infoDatabase.gender;
         weight = infoDatabase.weight;
 
+        //받아온 info 값 다이얼로그에 셋팅하기-----------------------------
         final EditText newAge = (EditText)layout.findViewById(R.id.newAge);
         final EditText newWeight = (EditText)layout.findViewById(R.id.newWeight);
         final RadioGroup radioGroup = (RadioGroup)layout.findViewById(R.id.radioGroup);
@@ -68,26 +72,41 @@ public class InfoEditDialog extends DialogFragment {
         newAge.setInputType(InputType.TYPE_CLASS_NUMBER);
         newWeight.setInputType(InputType.TYPE_CLASS_NUMBER);
 
+
+        //다이얼로그 확인 버튼 눌렀을 때-----------------------------------------------------
         builder.setPositiveButton("입력", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                infoDatabase.age = Integer.parseInt(newAge.getText().toString());
-                infoDatabase.weight = Integer.parseInt(newWeight.getText().toString());
+
+                //나이, 몸무게 입력한 값으로 변경
+                //입력 값이 없으면 기존 값 유지---------------------------------------
+                if(!newAge.getText().toString().equals("")){
+                    infoDatabase.age = Integer.parseInt(newAge.getText().toString());
+                }
+                if(!newWeight.getText().toString().equals("")){
+                    infoDatabase.weight = Integer.parseInt(newWeight.getText().toString());
+                }
+
+                //선택된 라디오버튼 성별로 정보 변경---------------------------
                 if(maleRadioButton.isChecked()){
                     infoDatabase.gender = "남자";
                 }else if(femaleRadioButton.isChecked()){
                     infoDatabase.gender = "여자";
                 }
 
+                //다이얼로그 입력값 담아서 프레그먼트로 넘겨주기------------------------
                 mDialogResult.finish(infoDatabase);
 
                 databaseBroker.saveInfoDatabase(((Main2Activity)getActivity()).context, infoDatabase);
             }
         });
+
         builder.setNegativeButton("취소", null);
 
         return builder.create();
     }
+
+    //다이얼로그 입력 값 home 프레그먼트로 넘겨주기=============================================
 
     public void setDialogResult(OnMyDialogResult dialogResult){
 
