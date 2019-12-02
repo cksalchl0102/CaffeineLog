@@ -172,7 +172,7 @@ public class AddViewFragment extends Fragment {
         // 그룹 생성
         listDataHeader.add("coffee");
         listDataHeader.add("tea");
-        listDataHeader.add("energyDrink");
+        listDataHeader.add("energydrink");
         listDataHeader.add("soda");
         listDataHeader.add("chocolate");
 
