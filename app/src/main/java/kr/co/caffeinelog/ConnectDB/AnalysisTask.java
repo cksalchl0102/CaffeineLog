@@ -22,12 +22,13 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
 
         //카페인 분석 결과를 갖고있는 DB와 연결
-        String jspUrl = "http://223.194.134.219:8080/ServerOfCaffeineLog/LogDB.jsp";
+        String jspUrl = "http://52.78.234.193:8080/ServerOfCaffeineLog/LogDB.jsp";
         //기숙사 내꺼 : 192.168.1.199
         //기숙사 방꺼 : 192.168.0.6
         //집 192.168.219.100
         //독서실 172.16.9.157
         //강의실 : 223.194.134.219
+        //aws ; 52.78.234.193
         HttpURLConnection conn = null;
 
         try {
