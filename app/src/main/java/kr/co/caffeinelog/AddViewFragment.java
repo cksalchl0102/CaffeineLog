@@ -43,7 +43,6 @@ public class AddViewFragment extends Fragment {
     private String caffeineSort = "";
     private String caffeineName = "";
     private CaffeineScopeDAO caffeineScopeDAO = new CaffeineScopeDAO();
-    public AddCaffeineBean addCaffeineBean = new AddCaffeineBean();
 
     SharedPreferences caffeinePrefs;
     SharedPreferences.Editor editor;
