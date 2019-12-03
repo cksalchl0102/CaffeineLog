@@ -55,8 +55,13 @@ public class HomeFragment extends Fragment {
         intakeView = (TextView)rootView.findViewById(R.id.intakeView);
         percentView = (TextView)rootView.findViewById(R.id.percentView);
         infoEditButton = (ImageButton) rootView.findViewById(R.id.infoEditButton);
+
         infoEditButton.setOnClickListener(onClickListener);
 
+        //글자가 화면을 벗어날 경우 흐르게 처리하기 위해 focus를 준다.
+        recommendedView.setSelected(true);
+        intakeView.setSelected(true);
+        percentView.setSelected(true);
 
         return rootView;
     }
@@ -78,6 +83,7 @@ public class HomeFragment extends Fragment {
             //정보 입력 다이얼로그 띄우기--------------------------------
             InfoEditDialog dialog = InfoEditDialog.newInstance();
             dialog.show(getFragmentManager(), "info_edit_dialog");
+            dialog.setCancelable(false); //다이얼로그 바깥영역 터치해도 안닫히게 설정
 
 
             //다이얼로그 입력 정보 받아서 textview에 표시----------------------

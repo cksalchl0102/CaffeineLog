@@ -52,6 +52,7 @@ public class AddViewFragment extends Fragment {
         caffeinePrefs = this.getActivity().getSharedPreferences("daily_caffeine", 0);
         editor = caffeinePrefs.edit();
 
+        ((Main2Activity)getActivity()).checkDate();
         totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
 
         fabBtn = (FloatingActionButton) rootView.findViewById(R.id.fab);
@@ -134,9 +135,15 @@ public class AddViewFragment extends Fragment {
                                             Log.i("chanmi", "in add Class : DB 성공");
 
                                         }
+
+                                        ((Main2Activity)getActivity()).checkDate();
+                                        totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
                                         totalCaffeine += value;
+
+                                        //하루 카페인 섭취량 변경
                                         editor.putInt("intake_caffeine", totalCaffeine);
                                         editor.apply();
+
                                         caffeineAmountView.setText(totalCaffeine + "");
                                     }
                                 }).setNegativeButton("취소", null);
@@ -226,9 +233,14 @@ public class AddViewFragment extends Fragment {
             addViewDialogFragment dialog = addViewDialogFragment.newInstance(new addViewDialogFragment.CaffeineInputListener() {
                 @Override
                 public void onCaffeineInputComplete(String caffeine) {
+                    ((Main2Activity)getActivity()).checkDate();
+                    totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
                     totalCaffeine += Integer.parseInt(caffeine);
+
+                    //하루 카페인 섭취량 변경
                     editor.putInt("intake_caffeine", totalCaffeine);
                     editor.apply();
+
                     caffeineAmountView.setText(totalCaffeine + "");
                 }
             });

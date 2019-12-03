@@ -12,6 +12,7 @@ import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import androidx.appcompat.app.ActionBar;
@@ -35,17 +36,19 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //가로화면 안됨.
 
+        //액션바 설정-----------------------------------------------------------
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_action_bar);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFFffffff));
 
+        checkDate();
 
         context = this;
-
         rootPath = "CaffeineLog";
 
+        //하단 메뉴바(add, home, log탭)-----------------------------------------------------------
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -56,10 +59,12 @@ public class Main2Activity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        databaseBroker = DatabaseBroker.createDatabaseObject(rootPath); //createDatabase()
-        databaseBroker.setInfoOnDataBrokerListener(context, onInfoListener); //set Database for Settings
-        infoDatabase = databaseBroker.loadInfoDatabase(context);
+        //info 데이터베이스------------------------------------------------
+        databaseBroker = DatabaseBroker.createDatabaseObject(rootPath); //데이터베이스 생성
+        databaseBroker.setInfoOnDataBrokerListener(context, onInfoListener); //info 데이터베이스 셋팅
+        infoDatabase = databaseBroker.loadInfoDatabase(context); //info 데이터 불러오기
     }
+
 
     DatabaseBroker.OnDataBrokerListener onInfoListener = new DatabaseBroker.OnDataBrokerListener() {
         @Override
@@ -68,4 +73,21 @@ public class Main2Activity extends AppCompatActivity {
         }
     };
 
+
+    //현재 날짜와 저장된 날짜가 다르면 하루 카페인 섭취량 초기화=====================================
+    public void checkDate(){
+
+        Calendar calendar = Calendar.getInstance(); //현재 날짜와 시간 정보를 객체에 저장
+        int date = calendar.get(Calendar.DATE); //현재 날짜
+
+        SharedPreferences caffeinePrefs = getSharedPreferences("daily_caffeine",0);
+
+        if(date != caffeinePrefs.getInt("date",0)){
+            SharedPreferences.Editor editor = caffeinePrefs.edit();
+            editor.putInt("date", date);
+            editor.putInt("intake_caffeine", 0);
+            editor.apply();
+        }
+
+    }
 }
