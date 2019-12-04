@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class AddViewFragment extends Fragment {
     private FloatingActionButton fabBtn;
     private TextView caffeineAmountView;
     private int totalCaffeine;
+    private int value=10;
     //DB연동 코드 추가
     private String caffeineSort = "";
     private String caffeineName = "";
@@ -80,9 +82,11 @@ public class AddViewFragment extends Fragment {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getActivity(),
+                Toast toast = Toast.makeText(getActivity(),
                         listDataHeader.get(groupPosition) + " 선택",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM,0,190);
+                toast.show();
                 caffeineSort = listDataHeader.get(groupPosition);
             }
         });
@@ -92,9 +96,11 @@ public class AddViewFragment extends Fragment {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getActivity(),
+                Toast toast = Toast.makeText(getActivity(),
                         listDataHeader.get(groupPosition) + " 선택 취소",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM,0,190);
+                toast.show();
 
             }
         });
@@ -107,11 +113,12 @@ public class AddViewFragment extends Fragment {
                                         final int groupPosition, final int childPosition, long id) {
                 //db에서 가져온 카페인함량 caffeineAmountView에 더하는 코드 추가해야함
 
+
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("카페인 추가")
                         .setMessage(listDataChild.get(
                                 listDataHeader.get(groupPosition)).get(
-                                childPosition) + "를 추가하시겠습니까?")
+                                childPosition) + "를 추가하시겠습니까?\n +"+value+"mg")
                         .setPositiveButton("확인",
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -123,6 +130,7 @@ public class AddViewFragment extends Fragment {
                                         caffeineAmountView.setText(""+(afterInput));
                                          */
 
+                                        /*
                                         //디비 연동 시작
                                         caffeineName = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
                                         int value = 0;
@@ -135,7 +143,7 @@ public class AddViewFragment extends Fragment {
                                             Log.i("chanmi", "in add Class : DB 성공");
 
                                         }
-
+                                        */
                                         ((Main2Activity)getActivity()).checkDate();
                                         totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
                                         totalCaffeine += value;
@@ -145,6 +153,9 @@ public class AddViewFragment extends Fragment {
                                         editor.apply();
 
                                         caffeineAmountView.setText(totalCaffeine + "");
+                                        Toast toast = Toast.makeText(getActivity(), "+"+value, Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.BOTTOM,0,190);
+                                        toast.show();
                                     }
                                 }).setNegativeButton("취소", null);
                 builder.setCancelable(false);//다이얼로그 바깥영역 터치 시 종료되지 않도록 함
@@ -240,6 +251,10 @@ public class AddViewFragment extends Fragment {
                     //하루 카페인 섭취량 변경
                     editor.putInt("intake_caffeine", totalCaffeine);
                     editor.apply();
+
+                    Toast toast = Toast.makeText(getActivity(), "+"+caffeine, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM,0,200);
+                    toast.show();
 
                     caffeineAmountView.setText(totalCaffeine + "");
                 }

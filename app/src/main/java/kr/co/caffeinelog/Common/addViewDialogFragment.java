@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -47,10 +48,8 @@ public class addViewDialogFragment extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 //사용자가 아무것도 입력하지않은 경우 예외처리
-                                try {
+                                if(!mCaffeine.getText().toString().equals("")){
                                     listener.onCaffeineInputComplete(mCaffeine.getText().toString());
-                                }catch (NumberFormatException ex){
-                                    return;
                                 }
                             }
                         }).setNegativeButton("취소", null);
