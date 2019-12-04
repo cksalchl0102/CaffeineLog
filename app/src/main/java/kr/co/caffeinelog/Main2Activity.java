@@ -26,6 +26,7 @@ import kr.co.caffeinelog.Common.Info;
 
 public class Main2Activity extends AppCompatActivity {
     DatabaseBroker databaseBroker;
+    DatabaseBroker fireDatabaseBroker;
     Info infoDatabase;
     String rootPath;
 
@@ -63,6 +64,9 @@ public class Main2Activity extends AppCompatActivity {
         databaseBroker = DatabaseBroker.createDatabaseObject(rootPath); //데이터베이스 생성
         databaseBroker.setInfoOnDataBrokerListener(context, onInfoListener); //info 데이터베이스 셋팅
         infoDatabase = databaseBroker.loadInfoDatabase(context); //info 데이터 불러오기
+
+        fireDatabaseBroker = DatabaseBroker.createFireDatabaseObject(rootPath);
+
     }
 
 

@@ -35,4 +35,11 @@ public abstract class DatabaseBroker {
         databaseBroker.rootPath = rootPath;
         return databaseBroker;
     }
+
+    public static DatabaseBroker createFireDatabaseObject(String rootPath){
+        DatabaseBroker  databaseBroker;
+        databaseBroker = new FirebaseBroker();
+        databaseBroker.rootPath = rootPath;
+        return databaseBroker;
+    }
 }
