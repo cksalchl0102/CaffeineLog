@@ -73,8 +73,10 @@ public class AnalysisFragment extends Fragment implements View.OnClickListener {
             recommended = weight * 2.5;
         }
         percent = intakeCaffeine / recommended * 100;
+        int p = (int)percent;
         Log.i("chanmi","in anlysis Class : "+percent);
-        String results[] = caffeineScopeDAO.getResult(String.valueOf(percent));
+
+        String results[] = caffeineScopeDAO.getResult(String.valueOf(p));
         if(results[0].equals("fail")){
             Log.i("chanmi","in analysis Class : Data get Fail");
         }else{

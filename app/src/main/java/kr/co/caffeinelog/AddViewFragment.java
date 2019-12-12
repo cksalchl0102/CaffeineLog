@@ -37,7 +37,7 @@ public class AddViewFragment extends Fragment {
     private FloatingActionButton fabBtn;
     private TextView caffeineAmountView;
     private int totalCaffeine;
-    private int value=10;
+    private int value;
     //DB연동 코드 추가
     private String caffeineSort = "";
     private String caffeineName = "";
@@ -113,6 +113,17 @@ public class AddViewFragment extends Fragment {
                                         final int groupPosition, final int childPosition, long id) {
                 //db에서 가져온 카페인함량 caffeineAmountView에 더하는 코드 추가해야함
 
+                caffeineName = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+                value = 0;
+                Log.i("chanmi", "in daaClass : 카페인 디비 보낼 값 테이블이름 : " + caffeineSort + ", 값 : " + caffeineName);
+                if (caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName).equals("false")) {
+                    Log.i("chanmi", "in add Class : DB 연동 실패");
+                    // value = Integer.parseInt(addCaffeineBean.getValue());
+                } else  {
+                    value = Integer.parseInt(caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName));
+                    Log.i("chanmi", "in add Class : DB 성공");
+
+                }
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("카페인 추가")
@@ -123,27 +134,6 @@ public class AddViewFragment extends Fragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
-                                        /*
-                                        int beforeInput = Integer.parseInt(caffeineAmountView.getText().toString());
-                                        //db에서 가져온 카페인함량값을 더해야함.
-                                        int afterInput = beforeInput+10;
-                                        caffeineAmountView.setText(""+(afterInput));
-                                         */
-
-                                        /*
-                                        //디비 연동 시작
-                                        caffeineName = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
-                                        int value = 0;
-                                        Log.i("chanmi", "in daaClass : 카페인 디비 보낼 값 테이블이름 : " + caffeineSort + ", 값 : " + caffeineName);
-                                        if (caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName).equals("false")) {
-                                            Log.i("chanmi", "in add Class : DB 연동 실패");
-                                           // value = Integer.parseInt(addCaffeineBean.getValue());
-                                        } else  {
-                                            value = Integer.parseInt(caffeineScopeDAO.addCaffeine(caffeineSort, caffeineName));
-                                            Log.i("chanmi", "in add Class : DB 성공");
-
-                                        }
-                                        */
                                         ((Main2Activity)getActivity()).checkDate();
                                         totalCaffeine = caffeinePrefs.getInt("intake_caffeine", 0);
                                         totalCaffeine += value;
@@ -253,7 +243,7 @@ public class AddViewFragment extends Fragment {
                     editor.apply();
 
                     Toast toast = Toast.makeText(getActivity(), "+"+caffeine, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.BOTTOM,0,200);
+                    toast.setGravity(Gravity.BOTTOM,0,190);
                     toast.show();
 
                     caffeineAmountView.setText(totalCaffeine + "");

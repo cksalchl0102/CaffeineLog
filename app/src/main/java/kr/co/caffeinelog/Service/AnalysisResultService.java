@@ -1,19 +1,16 @@
 package kr.co.caffeinelog.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import kr.co.caffeinelog.Model.AnalysisResult;
+import kr.co.caffeinelog.Model.Analysis;
 
 public class AnalysisResultService {
-    private AnalysisResult analysisResult = new AnalysisResult();
+    private Analysis analysisResult = new Analysis();
 
     public AnalysisResultService(){
     }
-
+/*
     public String getAnalysisResultResult(){
         return analysisResult.getResult();
-    }
+    }*/
 
 
 }

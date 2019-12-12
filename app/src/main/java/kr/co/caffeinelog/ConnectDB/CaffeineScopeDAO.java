@@ -2,17 +2,15 @@ package kr.co.caffeinelog.ConnectDB;
 
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import kr.co.caffeinelog.Model.AddCaffeineBean;
-import kr.co.caffeinelog.Model.AnalysisResult;
+import kr.co.caffeinelog.Model.Analysis;
 
 public class CaffeineScopeDAO {
 
     String[] returns;
-    private AnalysisResult analysisResult = new AnalysisResult();
+    private Analysis analysisResult = new Analysis();
     private AddCaffeineBean addCaffeineBean = new AddCaffeineBean();
 
     public boolean checkCaffeine(String scope) {
@@ -112,7 +110,7 @@ public class CaffeineScopeDAO {
         returns[0] = "fail";
         return returns;
     }
-
+/*
     public void settingResult(int scope) {
         analysisResult.setScope(scope);
         String result = "";
@@ -128,5 +126,5 @@ public class CaffeineScopeDAO {
             result = "카페인 과다 섭취량입니다. 맥박이 빨라지며, 심장이 많이 두군거릴 수 있어요.";
         }
         analysisResult.setResult(result);
-    }
+    }*/
 }
