@@ -22,7 +22,7 @@ public class AnalysisTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
 
         //카페인 분석 결과를 갖고있는 DB와 연결
-        String jspUrl = "http://223.194.131.135:8080/ServerOfCaffeineLog/LogDB.jsp";
+        String jspUrl = "http://13.125.33.50:8080/ServerOfCaffeineLog/LogDB.jsp";
         //http://localhost:8080/Caffenine/
         ///ServerOfCaffeineLog/LogDB.jsp"
         //기숙사 내꺼 : 192.168.1.199
